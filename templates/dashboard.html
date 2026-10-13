@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>BruteGuard Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body class="dashboard-page">
+
+    <div class="dashboard-container">
+
+        <h1>BruteGuard Dashboard</h1>
+
+        <p>Brute Force Detection System</p>
+
+
+        <div class="stats">
+
+
+            <div class="stat-card">
+
+                <h2>{{ total_attempts }}</h2>
+
+                <p>Total Attempts</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h2>{{ failed_attempts }}</h2>
+
+                <p>Failed Attempts</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h2>{{ detected_attacks }}</h2>
+
+                <p>Detected Attacks</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h2>{{ successful_logins }}</h2>
+
+                <p>Successful Logins</p>
+
+            </div>
+
+
+        </div>
+
+
+        <h2 class="table-title">
+            Login Attempts
+        </h2>
+        <form class="test-attack-form" action="/test_attack" method="POST">
+           <button type="submit">Test Attack</button>
+        </form>
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Username</th>
+
+                    <th>IP Address</th>
+
+                    <th>Status</th>
+
+                    <th>Time</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for attempt in attempts %}
+
+                <tr>
+
+                    <td>{{ attempt[0] }}</td>
+
+                    <td>{{ attempt[1] }}</td>
+
+                    <td>{{ attempt[2] }}</td>
+
+                    <td>{{ attempt[3] }}</td>
+
+                    <td>{{ attempt[4] }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+
+    </div>
+
+</body>
+
+</html>
